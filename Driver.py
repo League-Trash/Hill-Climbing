@@ -16,7 +16,9 @@ def createBoard(n):
   queenBoard = ([1] * n) + ([0] * ((n*n) - n))
   random.shuffle(queenBoard)
   queenBoard = [queenBoard[i:i+n] for i in range(0, n*n, n)]
-  
+ 
+#Used to find the positions of queens on the board and append them to a list.
+#Simple way to work with only the queens positions for the queenHeuristic
 def indices():
   global tempBoard
   for i in range(len(tempBoard)):
@@ -24,7 +26,25 @@ def indices():
       if tempBoard[i][j] == 1:
         indexList.append([i,j])
 
-def hillClimbing(lst):
+#A heurstic funtion to return the number of conflicts a queen has with other queens on the board.
+#Queens with more conflicts are considered first when attempting a move. INCOMPLETE
+def queenHeuristic(lst):
+  conflicts = 0
+  currentCheck = 0
+  for i in range(len(lst)):
+    currentCheck = lst[i]
+    for j in range(len(lst)):
+      if currentCheck == lst[j]:
+        continue
+      elif currentCheck[0] == lst[j][0]:
+        conflicts = conflicts + 1
+      elif currentCheck[1] == lst[j][1]:
+        conflicts = conflicts + 1
+      elif abs(currentCheck[0] - lst[j][0]) == abs(currentCheck[1] - lst[j][1]):
+        conflicts = conflicts + 1
+
+
+#def hillClimbing(lst):
     
 
 #Main program begins here
@@ -39,3 +59,5 @@ if selection == 1:
 
 print(queenBoard)
 print(indexList)
+
+queenHeuristic(indexList)
