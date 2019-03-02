@@ -35,7 +35,7 @@ if selection == 1:
   if size <= 250:
     createBoard(size)
     board = queenBoard
-    for i range(50000):
+    for i in range(50000):
       bestVal = queenHeuristic(board)
       for j in range(len(board)):
         tempBoard = board
