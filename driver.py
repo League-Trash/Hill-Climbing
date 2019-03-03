@@ -7,13 +7,14 @@ queenBoard = []
 indexList = []
 originalIndexList = []
 
-#sets up a 1d array of queen positions.
+#sets up a 2d array of queen positions.
 def createBoard(n):
 	global queenBoard
 	queenBoard = ([1] * n) + ([0] * ((n*n) - n))
 	random.shuffle(queenBoard)
 	queenBoard = [queenBoard[i:i+n] for i in range(0, n*n, n)]
 
+#finds positions of queens to use in queenHeuristic
 def indices():
 	global queenBoard
 	for i in range(len(queenBoard)):
